@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="U3hfFJuJE7fOrc-JNadDeeol7xc00kYYGSsLzKm-y04" />
+  <title>Dhyey Patel — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dhyey Patel",
+    "url": "https://dp-portfolio-ns4w.onrender.com/",
+    "sameAs": [
+      "https://www.linkedin.com/in/dhyey-patel-736964258/",
+      "https://www.instagram.com/art_by_dhyey/",
+      "https://www.instagram.com/dp_potrait_/"
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     OLD CURSOR ELEMENTS — COMMENTED OUT
+     To use old cursor: uncomment these two divs, uncomment the
+     old cursor CSS block above, and uncomment initOldCursor()
+     in the JS section below.
+     ═══════════════════════════════════════════════════════════
+  <div id="cur-dot"></div>
+  <div id="cur-ring"></div>
+     ═══════════════════════════════════════════════════════════ -->
+
+  <!-- NEW CURSOR CANVAS — ORBITAL NAVIGATOR -->
+  <canvas id="cur-cvs"></canvas>
+
+  <!-- BG PARTICLE CANVAS -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- STATIC OVERLAYS -->
+  <div class="scan-overlay"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- AMBIENT ORBS -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════════════ -->
+  <nav id="nav">
+    <div class="nav-logo">
+      <span class="bracket">[</span>DP<span class="bracket">]</span><span class="dot">.</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about" data-num="01">About</a></li>
+      <li><a href="#skills" data-num="02">Skills</a></li>
+      <li><a href="#projects" data-num="03">Projects</a></li>
+      <li><a href="#experience" data-num="04">Experience</a></li>
+      <li><a href="#education" data-num="05">Education</a></li>
+      <li><a href="#contact" data-num="06">Contact</a></li>
+    </ul>
+    <div class="nav-status">
+      <div class="status-dot"></div>
+      ONLINE &amp; AVAILABLE
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="hero-sys" id="hero-sys">
+            <span id="sys-time">--:--:--</span>
+            &nbsp;/&nbsp;
+            <!-- <span>SYS_READY</span>
+            &nbsp;/&nbsp; -->
+            <span>VADODARA, INDIA</span>
+          </div>
+          <h1 class="hero-name" id="hero-name">DHYEY<br /><span class="glow">PATEL</span></h1>
+          <div class="hero-role" id="hero-role">WEB DEVELOPER &nbsp;·&nbsp; ANDROID DEVELOPER &nbsp;·&nbsp; UI/UX DESIGNER &nbsp;·&nbsp;
+            GRAPHIC DESIGNER</div>
+          <p class="hero-bio" id="hero-bio">A dedicated and creative developer blending design and technology to craft
+            engaging digital experiences. Proficient in full-stack development, mobile apps, and visual design.</p>
+          <div class="hero-btns" id="hero-btns">
+            <a href="#projects" class="btn-prim">
+              <svg class="ic" viewBox="0 0 24 24">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+              VIEW PROJECTS
+            </a>
+            <a href="#contact" class="btn-ghost">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              GET IN TOUCH
+            </a>
+          </div>
+        </div>
+        <div class="hero-hud hud hud-inner" id="hero-hud">
+          <div class="hud-title">SYSTEM PROFILE</div>
+          <div class="stats-grid">
+            <div class="stat-cell">
+              <div class="stat-n">1<span class="unit">+</span></div>
+              <div class="stat-l">Years Exp.</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-n">5<span class="unit">+</span></div>
+              <div class="stat-l">Projects</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-n">7<span class="unit">.02</span></div>
+              <div class="stat-l">BCA CGPA</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-n"><span id="live-visits" style="color:var(--cyan)">—</span></div>
+              <div class="stat-l">Site Visits</div>
+            </div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-label">// TECH STACK</div>
+            <div class="stack-pills">
+              <span class="spill">Django</span><span class="spill">React.js</span>
+              <span class="spill">Python</span><span class="spill">Figma</span>
+              <span class="spill">REST API</span><span class="spill">Firebase</span>
+              <span class="spill">Docker</span><span class="spill">SQLite</span>
+            </div>
+          </div>
+          <div class="avail-badge">
+            <div class="avail-dot"></div>AVAILABLE FOR NEW OPPORTUNITIES
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-wrap">
+        <div class="about-card hud hud-inner reveal-r">
+          <div class="about-initials">DP</div>
+          <div class="info-row"><span class="info-key">Location</span><span class="info-val">Vadodara, Gujarat 🇮🇳</span>
+          </div>
+          <div class="info-row"><span class="info-key">Role</span><span class="info-val">Full Stack Dev</span></div>
+          <div class="info-row"><span class="info-key">Focus</span><span class="info-val">Web &amp; Android</span></div>
+          <div class="info-row"><span class="info-key">Design</span><span class="info-val">UI/UX + Graphic</span></div>
+          <div class="info-row"><span class="info-key">Degree</span><span class="info-val">MSc IT (Pursuing)</span>
+          </div>
+          <div class="info-row"><span class="info-key">Status</span><span class="info-val online">● AVAILABLE</span>
+          </div>
+        </div>
+        <div class="about-right">
+          <div class="sec-header reveal-r">
+            <div class="sec-tag">01 — About Me</div>
+            <h2 class="sec-title">The person<br />behind the <em>code.</em></h2>
+            <div class="sec-rule"></div>
+          </div>
+          <p class="reveal-r">I am a dedicated and creative individual with a passion for blending design and technology
+            to craft engaging digital experiences. Throughout my journey in the field of technology, I have developed a
+            versatile skill set that spans both frontend and backend development.</p>
+          <p class="reveal-r">My proficiency includes Python, Django, REST APIs, HTML, CSS, JavaScript, React.js, Figma
+            (UI/UX Design), Illustrator, and Photoshop. I continually strive to expand my knowledge and bring innovative
+            ideas to every project I undertake.</p>
+          <div class="attr-grid reveal-r">
+            <div class="attr-box">
+              <div class="attr-icon">⚡</div>
+              <div class="attr-label">Positive Attitude</div>
+            </div>
+            <div class="attr-box">
+              <div class="attr-icon">🎯</div>
+              <div class="attr-label">Honest</div>
+            </div>
+            <div class="attr-box">
+              <div class="attr-icon">🚀</div>
+              <div class="attr-label">Quick Learner</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     SKILLS
+═══════════════════════════════════════════════════════════ -->
+  <section id="skills">
+    <div class="container">
+      <div class="sec-header reveal-r" style="margin-bottom:56px">
+        <div class="sec-tag">02 — Skills</div>
+        <h2 class="sec-title">Tools &amp; technologies<br />I work <em>with.</em></h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="skills-wrap">
+        <div class="sk-card hud hud-inner reveal-r"><span class="sk-glyph">🐍</span>
+          <div class="sk-name">Python</div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="90"></div>
+          </div>
+        </div>
+        <div class="sk-card hud hud-inner reveal-r"><span class="sk-glyph">🌐</span>
+          <div class="sk-name">HTML &amp; CSS</div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="90"></div>
+          </div>
+        </div>
+        <div class="sk-card hud hud-inner reveal-r"><span class="sk-glyph">⚡</span>
+          <div class="sk-name">JavaScript</div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="75"></div>
+          </div>
+        </div>
+        <div class="sk-card hud hud-inner reveal-r"><span class="sk-glyph">⚛️</span>
+          <div class="sk-name">React.js</div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="65"></div>
+          </div>
+        </div>
+        <div class="sk-card hud hud-inner reveal-r"><span class="sk-glyph">🔧</span>
+          <div class="sk-name">Django</div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="90"></div>
+          </div>
+        </div>
+        <div class="sk-card hud hud-inner reveal-r"><span class="sk-glyph">🎨</span>
+          <div class="sk-name">Figma / UI·UX</div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="90"></div>
+          </div>
+        </div>
+        <div class="sk-card hud hud-inner reveal-r"><span class="sk-glyph">🖌️</span>
+          <div class="sk-name">Illustrator</div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="95"></div>
+          </div>
+        </div>
+        <div class="sk-card hud hud-inner reveal-r"><span class="sk-glyph">📷</span>
+          <div class="sk-name">Photoshop</div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="75"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     PROJECTS
+═══════════════════════════════════════════════════════════ -->
+  <section id="projects">
+    <div class="container">
+      <div class="sec-header reveal-r" style="margin-bottom:56px">
+        <div class="sec-tag">03 — Projects</div>
+        <h2 class="sec-title">Things I've <em>built</em><br />with pride.</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="projects-layout">
+
+        <!-- PROJECT 1 — FEATURED -->
+        <div class="proj-card featured hud hud-inner reveal-r">
+          <div class="proj-line"></div>
+          <div class="proj-inner">
+            <div class="proj-img-wrap">
+              <div class="img-placeholder">
+                <div class="ph-icon">🖼️</div>
+                <div>ADD PROJECT IMAGE</div>
+                <div class="ph-hint">Set src="" on the &lt;img&gt; below</div>
+              </div>
+              <!-- ↓ Set src to your screenshot URL e.g. src="./ekaiq-screenshot.png" -->
+              <img src="Screenshot 2026-04-19 151339.png" alt="एकाAiQ Screenshot" />
+              <div class="proj-overlay"></div>
+            </div>
+            <div class="proj-body">
+              <div class="proj-badge">⭐ Featured · Copyright Registered</div>
+              <h3 class="proj-name">एकाAiQ — Intelligent<br />AI Quiz Builder</h3>
+              <p class="proj-desc">A full-stack AI-powered platform that intelligently generates quizzes from uploaded
+                documents using PDF parsing and AI. Copyright filed March 2025 — App. No. 11843/2025-CO/SW.</p>
+              <div class="proj-meta">
+                <div class="proj-meta-row"><span class="proj-meta-key">Role</span><span class="proj-meta-val">Full Stack
+                    Dev / AI Integration Lead</span></div>
+                <div class="proj-meta-row"><span class="proj-meta-key">Status</span><span class="proj-meta-val"
+                    style="color:var(--gold)">Copyright In Progress</span></div>
+              </div>
+              <div class="proj-tags">
+                <span class="tag">Django</span><span class="tag">Python</span><span class="tag">HTML</span>
+                <span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">JWT</span>
+                <span class="tag">PDF Parsing</span><span class="tag">SQLite</span>
+              </div>
+              <div class="proj-actions">
+                <!-- ↓ REPLACE href="#" WITH YOUR GITHUB REPO URL -->
+                <!-- <a href="#" class="proj-gh-link" target="_blank" rel="noopener">
+                  <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  VIEW ON GITHUB
+                </a> -->
+                <!-- ↓ REPLACE href="#" WITH YOUR LIVE DEMO URL -->
+                <a href="https://quizbot-m7r0.onrender.com/" class="proj-demo-link" target="_blank" rel="noopener">
+                  <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
+                  LIVE DEMO
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECTS ROW -->
+        <div class="proj-row">
+
+          <!-- PROJECT 2 -->
+          <div class="proj-card hud hud-inner reveal-r">
+            <div class="proj-line"></div>
+            <div class="proj-inner">
+              <div class="proj-img-wrap">
+                <div class="img-placeholder">
+                  <div class="ph-icon">🖼️</div>
+                  <div>ADD PROJECT IMAGE</div>
+                  <div class="ph-hint">Set src="" on the &lt;img&gt; below</div>
+                </div>
+                <!-- ↓ Set src to your screenshot URL -->
+                <img src="Screenshot 2026-04-19 144829.png" alt="QR Code Generator Screenshot" />
+                <div class="proj-overlay"></div>
+              </div>
+              <div class="proj-body">
+                <div class="proj-badge cyan">Web App</div>
+                <h3 class="proj-name">QR Code Generator</h3>
+                <p class="proj-desc">A sleek web-based QR code generator allowing users to input text or links and
+                  instantly generate, preview, and download QR codes.</p>
+                <div class="proj-tags">
+                  <span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span>
+                </div>
+                <div class="proj-actions">
+                  <!-- ↓ REPLACE href="#" WITH YOUR GITHUB REPO URL -->
+                  <!-- <a href="#" class="proj-gh-link" target="_blank" rel="noopener">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path
+                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                    GITHUB
+                  </a> -->
+                  <!-- ↓ REPLACE href="#" WITH YOUR LIVE DEMO URL -->
+                  <a href="https://ekaqr.onrender.com/" class="proj-demo-link" target="_blank" rel="noopener">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                    LIVE
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT 3 -->
+          <div class="proj-card hud hud-inner reveal-r">
+            <div class="proj-line"></div>
+            <div class="proj-inner">
+              <div class="proj-img-wrap">
+                <div class="img-placeholder">
+                  <div class="ph-icon">🖼️</div>
+                  <div>ADD PROJECT IMAGE</div>
+                  <div class="ph-hint">Set src="" on the &lt;img&gt; below</div>
+                </div>
+                <!-- ↓ Set src to your screenshot URL -->
+                <img src="rklogo.jpg" alt="Raktkadi Screenshot" />
+                <div class="proj-overlay"></div>
+              </div>
+              <div class="proj-body">
+                <div class="proj-badge">Enterprise · ELSOLVE</div>
+                <h3 class="proj-name">Raktkadi — Blood Donation Platform</h3>
+                <p class="proj-desc">Blood donation and requirement platform with Android app, REST backend, and
+                  Firebase cloud integrations. Built during professional tenure at ELSOLVE IT.</p>
+                <div class="proj-tags">
+                  <span class="tag">Django</span><span class="tag">REST API</span><span class="tag">Android</span><span
+                    class="tag">Firebase</span><span class="tag">Docker</span>
+                </div>
+                <div class="proj-actions">
+                  <!-- ↓ REPLACE href="#" WITH YOUR GITHUB REPO URL -->
+                  <!-- <a href="#" class="proj-gh-link" target="_blank" rel="noopener">
+                    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path
+                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                    GITHUB
+                  </a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end .proj-row -->
+      </div><!-- end .projects-layout -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     EXPERIENCE
+═══════════════════════════════════════════════════════════ -->
+  <section id="experience">
+    <div class="container">
+      <div class="exp-wrap">
+        <div class="exp-sidebar">
+          <div class="sec-header reveal-r">
+            <div class="sec-tag">04 — Experience</div>
+            <h2 class="sec-title" style="font-size:1.6rem">Where I've<br />honed my<br /><em>craft.</em></h2>
+            <div class="sec-rule"></div>
+          </div>
+        </div>
+        <div class="exp-items">
+          <div class="exp-item hud hud-inner reveal-r">
+            <div class="exp-period">Professional Experience</div>
+            <div class="exp-co">ELSOLVE IT PRIVATE LIMITED</div>
+            <div class="exp-title">Software Developer</div>
+            <p class="exp-desc">Contributed to the development of two major projects — a Library Management System and
+              Raktkadi, a blood donation and requirement platform. Gained hands-on exposure to backend development, API
+              creation, database management, Android application development, and cloud integrations, enhancing
+              technical proficiency in Django, REST APIs, Docker, and Firebase.</p>
+            <div class="exp-chips">
+              <span class="chip">Django</span><span class="chip">REST APIs</span>
+              <span class="chip">Docker</span><span class="chip">Firebase</span>
+              <span class="chip">Android Dev</span><span class="chip">Database Mgmt</span>
+              <span class="chip">Cloud Integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     EDUCATION
+═══════════════════════════════════════════════════════════ -->
+  <section id="education">
+    <div class="container">
+      <div class="sec-header reveal-r" style="margin-bottom:56px">
+        <div class="sec-tag">05 — Education</div>
+        <h2 class="sec-title">Academic<br /><em>background.</em></h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="edu-cards">
+        <div class="edu-card hud hud-inner reveal-r">
+          <div class="edu-yr">2025 — 2027</div>
+          <div class="edu-deg">Master of Science — Information Technology</div>
+          <div class="edu-univ">The Maharaja Sayajirao University of Baroda</div>
+          <div class="edu-result">🎓 Currently Pursuing</div>
+        </div>
+        <div class="edu-card hud hud-inner reveal-r">
+          <div class="edu-yr">2022 — 2025</div>
+          <div class="edu-deg">Bachelor of Computer Application</div>
+          <div class="edu-univ">The Maharaja Sayajirao University of Baroda</div>
+          <div class="edu-result">⭐ CGPA: 7.02 — Completed</div>
+        </div>
+        <div class="edu-card hud hud-inner reveal-r">
+          <div class="edu-yr">2019 — 2022</div>
+          <div class="edu-deg">Diploma — Architectural Assistantship</div>
+          <div class="edu-univ">The Maharaja Sayajirao University of Baroda</div>
+          <div class="edu-result">📐 Result: 55%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="sec-header reveal-r" style="max-width:740px">
+        <div class="sec-tag">06 — Contact</div>
+        <h2 class="sec-title">Let's build something<br /><em>great together.</em></h2>
+        <div class="sec-rule"></div>
+      </div>
+      <p class="contact-lead reveal-r" style="max-width:680px;margin-top:24px">
+        Whether you have a project idea, an opportunity, or just want to say hello — fill the form or reach out
+        directly. I'm always open to interesting conversations.
+      </p>
+
+      <div class="contact-layout">
+
+        <!-- LEFT — quick-contact cards -->
+        <div class="contact-info reveal-r">
+          <a href="tel:+918511037876" class="c-card hud hud-inner">
+            <div class="c-icon">📞</div>
+            <div>
+              <div class="c-lbl">Phone</div>
+              <div class="c-val">+91 8511037876</div>
+            </div>
+          </a>
+          <a href="mailto:dhyeypatel650@gmail.com" class="c-card hud hud-inner">
+            <div class="c-icon">✉️</div>
+            <div>
+              <div class="c-lbl">Email</div>
+              <div class="c-val">dhyeypatel650@gmail.com</div>
+            </div>
+          </a>
+          <div class="c-card hud hud-inner">
+            <div class="c-icon">🌍</div>
+            <div>
+              <div class="c-lbl">Languages</div>
+              <div class="c-val">Hindi · Gujarati · English</div>
+            </div>
+          </div>
+          <div class="c-card hud hud-inner">
+            <div class="c-icon">📍</div>
+            <div>
+              <div class="c-lbl">Location</div>
+              <div class="c-val">Vadodara, Gujarat 🇮🇳</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT — contact form -->
+        <div class="form-card hud hud-inner reveal-r">
+          <div class="form-title">SEND A MESSAGE</div>
+
+          <div class="form-2col">
+            <div class="form-row">
+              <label for="cf-name">Your Name *</label>
+              <input type="text" id="cf-name" placeholder="Ravi Shah" maxlength="255" />
+            </div>
+            <div class="form-row">
+              <label for="cf-email">Email Address *</label>
+              <input type="email" id="cf-email" placeholder="you@example.com" maxlength="255" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" placeholder="Project collaboration / Job opportunity / Say hi"
+              maxlength="500" />
+          </div>
+
+          <div class="form-row">
+            <label for="cf-message">Message *</label>
+            <textarea id="cf-message" rows="5" placeholder="Tell me about your project, idea, or opportunity…"
+              maxlength="5000"></textarea>
+          </div>
+
+          <button class="btn-submit" id="cf-submit" type="button">
+            <div class="spin"></div>
+            <span class="btn-text">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                style="vertical-align:middle;margin-right:6px">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              SEND MESSAGE
+            </span>
+          </button>
+
+          <div id="form-toast"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     RESUME
+═══════════════════════════════════════════════════════════ -->
+  <style>
+    #resume {
+      padding: 90px 0 110px;
+    }
+
+    #resume .resume-card {
+      max-width: 760px;
+      margin: 48px auto 0;
+      padding: 44px 36px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    #resume .resume-lead {
+      font-family: var(--font-b);
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text);
+      max-width: 560px;
+      margin: 0 auto 28px;
+    }
+
+    #resume .resume-btn {
+      text-decoration: none;
+    }
+
+    #resume .resume-meta {
+      margin-top: 18px;
+      font-family: var(--font-m);
+      font-size: .62rem;
+      letter-spacing: .12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      #resume {
+        padding: 70px 0 80px;
+      }
+
+      #resume .resume-card {
+        padding: 32px 20px;
+      }
+    }
+  </style>
+  <section id="resume">
+    <div class="container">
+      <div class="sec-header reveal-r" style="max-width:740px;margin:0 auto;text-align:center">
+        <div class="sec-tag">07 — Resume</div>
+        <h2 class="sec-title">Want the full<br /><em>picture?</em></h2>
+        <div class="sec-rule" style="margin-left:auto;margin-right:auto"></div>
+      </div>
+
+      <div class="resume-card hud hud-inner reveal-r">
+        <p class="resume-lead">
+          Download my resume to see my education, projects, skills and experience all in one place.
+        </p>
+        <a class="btn-prim resume-btn" href="/resume.pdf" download="Dhyey_Patel_Resume.pdf">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="vertical-align:middle">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          DOWNLOAD RESUME
+        </a>
+        <div class="resume-meta">PDF Format</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="ft-brand">[DP].</span>
+    <span class="ft-cr"><center>© 2026 DHYEY PATEL · ALL RIGHTS RESERVED</center></span>
+    <span style="font-family:var(--font-m);font-size:.58rem;color:var(--muted)">DESIGNED &amp; BUILT BY DHYEY
+      PATEL</span>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT — ALL IN ONE IIFE, STRICT MODE
+═══════════════════════════════════════════════════════════ -->
+  <script src="script.js"></script>
+</body>
+
+</html>
